@@ -1,0 +1,13 @@
+[package]
+name = "thrift_parser"
+version = "0.1.0"
+edition = "2021"
+authors = ["Codpoe <codpoe.me@gmail.com>"]
+categories = ["thrift-idl", "parser"]
+description = "A simple thrift idl parser written in rust."
+keywords = ["thrift", "idl", "parser"]
+license = "MIT"
+repository = "https://github.com/codpoe/thrift_parser"
+
+[dependencies]
+nom = "7.1.3"
