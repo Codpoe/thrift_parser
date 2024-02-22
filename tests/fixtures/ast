@@ -1,0 +1,330 @@
+ThriftDocument {
+    body: [
+        Namespace(
+            NamespaceDefinition {
+                scope: Identifier {
+                    value: "x",
+                },
+                name: Identifier {
+                    value: "a.b.c",
+                },
+            },
+        ),
+        Include(
+            IncludeDefinition {
+                path: StringLiteral {
+                    value: "a.thrift",
+                },
+            },
+        ),
+        Struct(
+            StructDefinition {
+                name: Identifier {
+                    value: "GetDataReq",
+                },
+                fields: [
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "parameters",
+                        },
+                        field_id: FieldId {
+                            value: 1,
+                        },
+                        field_type: String,
+                        requiredness: None,
+                        comments: [
+                            Line(
+                                CommentLine {
+                                    value: "这是单行注释",
+                                },
+                            ),
+                            Line(
+                                CommentLine {
+                                    value: "这也是单行注释",
+                                },
+                            ),
+                        ],
+                        annotations: None,
+                    },
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "status",
+                        },
+                        field_id: FieldId {
+                            value: 2,
+                        },
+                        field_type: I32,
+                        requiredness: None,
+                        comments: [
+                            Block(
+                                CommentBlock {
+                                    value: [
+                                        "这是多行注释",
+                                    ],
+                                },
+                            ),
+                        ],
+                        annotations: Some(
+                            Annotations {
+                                annotations: [
+                                    Annotation {
+                                        name: Identifier {
+                                            value: "api.query",
+                                        },
+                                        value: StringLiteral {
+                                            value: "status",
+                                        },
+                                    },
+                                ],
+                            },
+                        ),
+                    },
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "money",
+                        },
+                        field_id: FieldId {
+                            value: 3,
+                        },
+                        field_type: Double,
+                        requiredness: None,
+                        comments: [],
+                        annotations: None,
+                    },
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "is_ok",
+                        },
+                        field_id: FieldId {
+                            value: 3,
+                        },
+                        field_type: Bool,
+                        requiredness: None,
+                        comments: [],
+                        annotations: None,
+                    },
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "kvs",
+                        },
+                        field_id: FieldId {
+                            value: 2,
+                        },
+                        field_type: Map(
+                            Identifier(
+                                Identifier {
+                                    value: "a.A",
+                                },
+                            ),
+                            String,
+                        ),
+                        requiredness: Some(
+                            Optional,
+                        ),
+                        comments: [],
+                        annotations: None,
+                    },
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "a_list",
+                        },
+                        field_id: FieldId {
+                            value: 3,
+                        },
+                        field_type: List(
+                            Identifier(
+                                Identifier {
+                                    value: "a.A",
+                                },
+                            ),
+                        ),
+                        requiredness: Some(
+                            Required,
+                        ),
+                        comments: [],
+                        annotations: None,
+                    },
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "item_type",
+                        },
+                        field_id: FieldId {
+                            value: 6,
+                        },
+                        field_type: Identifier(
+                            Identifier {
+                                value: "ItemType",
+                            },
+                        ),
+                        requiredness: None,
+                        comments: [],
+                        annotations: None,
+                    },
+                ],
+                comments: [],
+            },
+        ),
+        Struct(
+            StructDefinition {
+                name: Identifier {
+                    value: "GetDataRes",
+                },
+                fields: [
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "status",
+                        },
+                        field_id: FieldId {
+                            value: 1,
+                        },
+                        field_type: I32,
+                        requiredness: None,
+                        comments: [],
+                        annotations: None,
+                    },
+                    FieldDefinition {
+                        name: Identifier {
+                            value: "msg",
+                        },
+                        field_id: FieldId {
+                            value: 2,
+                        },
+                        field_type: String,
+                        requiredness: None,
+                        comments: [],
+                        annotations: None,
+                    },
+                ],
+                comments: [],
+            },
+        ),
+        Enum(
+            EnumDefinition {
+                name: Identifier {
+                    value: "ItemType",
+                },
+                members: [
+                    EnumMember {
+                        name: Identifier {
+                            value: "Unknown",
+                        },
+                        initializer: Some(
+                            IntegerLiteral {
+                                value: "0",
+                            },
+                        ),
+                        comments: [
+                            Line(
+                                CommentLine {
+                                    value: "未知",
+                                },
+                            ),
+                        ],
+                    },
+                    EnumMember {
+                        name: Identifier {
+                            value: "Normal",
+                        },
+                        initializer: Some(
+                            IntegerLiteral {
+                                value: "1",
+                            },
+                        ),
+                        comments: [
+                            Line(
+                                CommentLine {
+                                    value: "普通",
+                                },
+                            ),
+                        ],
+                    },
+                    EnumMember {
+                        name: Identifier {
+                            value: "Special",
+                        },
+                        initializer: Some(
+                            IntegerLiteral {
+                                value: "2",
+                            },
+                        ),
+                        comments: [
+                            Line(
+                                CommentLine {
+                                    value: "特别",
+                                },
+                            ),
+                        ],
+                    },
+                ],
+                comments: [],
+            },
+        ),
+        Service(
+            ServiceDefinition {
+                name: Identifier {
+                    value: "ThriftService",
+                },
+                functions: [
+                    FunctionDefinition {
+                        name: Identifier {
+                            value: "GetData",
+                        },
+                        return_type: Identifier(
+                            Identifier {
+                                value: "GetDataRes",
+                            },
+                        ),
+                        fields: [
+                            FieldDefinition {
+                                name: Identifier {
+                                    value: "req",
+                                },
+                                field_id: FieldId {
+                                    value: 1,
+                                },
+                                field_type: Identifier(
+                                    Identifier {
+                                        value: "GetDataReq",
+                                    },
+                                ),
+                                requiredness: None,
+                                comments: [],
+                                annotations: None,
+                            },
+                        ],
+                        comments: [
+                            Line(
+                                CommentLine {
+                                    value: "获取数据",
+                                },
+                            ),
+                        ],
+                        annotations: Some(
+                            Annotations {
+                                annotations: [
+                                    Annotation {
+                                        name: Identifier {
+                                            value: "api.get",
+                                        },
+                                        value: StringLiteral {
+                                            value: "/api/get-data",
+                                        },
+                                    },
+                                    Annotation {
+                                        name: Identifier {
+                                            value: "other",
+                                        },
+                                        value: StringLiteral {
+                                            value: "something",
+                                        },
+                                    },
+                                ],
+                            },
+                        ),
+                    },
+                ],
+                comments: [],
+            },
+        ),
+    ],
+}
