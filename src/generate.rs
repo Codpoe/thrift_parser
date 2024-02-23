@@ -166,7 +166,20 @@ impl Visit for Visitor {
     for field in &struct_definition.fields {
       code.push_str(&self.format_comments(&field.comments, &INDENT));
       code.push_str(INDENT);
-      code.push_str(&field.name.value);
+
+      if let Some(annotations) = &field.annotations {
+        for annotation in &annotations.annotations {
+          match annotation.name.value.as_str() {
+            "api.query" | "api.body" => {
+              code.push_str(&annotation.value.value);
+              break;
+            }
+            _ => {}
+          }
+        }
+      } else {
+        code.push_str(&field.name.value);
+      };
 
       if matches!(field.requiredness, Some(Requiredness::Optional)) {
         code.push_str("?");

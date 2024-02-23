@@ -21,7 +21,7 @@ struct GetDataReq {
     // 这也是单行注释
     1: string parameters
     /* 这是多行注释 */
-    2: i32 status (api.query="status")
+    2: i32 status (api.query="query_status")
     3: double money
     3: bool is_ok
     2: optional map<a.A, string> kvs
@@ -30,7 +30,7 @@ struct GetDataReq {
 }
     
 struct GetDataRes {
-    1: i32 status
+    1: i32 status (api.body="body_status")
     2: string msg
 }
     

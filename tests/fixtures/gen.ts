@@ -12,7 +12,7 @@ export interface GetDataReq {
    */
   parameters: string;
   /** 这是多行注释 */
-  status: number;
+  query_status: number;
   money: number;
   is_ok: boolean;
   kvs?: Record<a.A, string>;
@@ -21,7 +21,7 @@ export interface GetDataReq {
 }
 
 export interface GetDataRes {
-  status: number;
+  body_status: number;
   msg: string;
 }
 

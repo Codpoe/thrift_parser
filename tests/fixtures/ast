@@ -72,7 +72,7 @@ ThriftDocument {
                                             value: "api.query",
                                         },
                                         value: StringLiteral {
-                                            value: "status",
+                                            value: "query_status",
                                         },
                                     },
                                 ],
@@ -180,7 +180,20 @@ ThriftDocument {
                         field_type: I32,
                         requiredness: None,
                         comments: [],
-                        annotations: None,
+                        annotations: Some(
+                            Annotations {
+                                annotations: [
+                                    Annotation {
+                                        name: Identifier {
+                                            value: "api.body",
+                                        },
+                                        value: StringLiteral {
+                                            value: "body_status",
+                                        },
+                                    },
+                                ],
+                            },
+                        ),
                     },
                     FieldDefinition {
                         name: Identifier {
