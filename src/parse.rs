@@ -2,7 +2,7 @@ use nom::{
   branch::alt,
   bytes::complete::{is_not, tag, take_till, take_until},
   character::complete::{anychar, char, digit1, multispace0, none_of, space0, space1},
-  combinator::{map, not, opt},
+  combinator::{map, opt},
   error::context,
   multi::{many0, separated_list1},
   sequence::{delimited, preceded, separated_pair, tuple},
@@ -694,22 +694,22 @@ fn thrift_document(i: &str) -> IResult<&str, ThriftDocument> {
 }
 
 pub struct Parser<'a> {
-  input: &'a str,
+  code: &'a str,
 }
 
 impl<'a> Parser<'a> {
-  pub fn new(input: &'a str) -> Self {
-    Self { input }
+  pub fn new(code: &'a str) -> Self {
+    Self { code }
   }
 
-  pub fn parse(&self) -> ThriftDocument {
-    let (left, ret) = thrift_document(self.input).unwrap();
+  pub fn parse(&self) -> Result<ThriftDocument, String> {
+    let (left, ret) = thrift_document(self.code).unwrap();
 
     if !left.trim().is_empty() {
-      panic!("Unexpected input: {:#?}", left);
+      return Err(format!("Unexpected code: {:#?}", left));
     }
 
-    ret
+    Ok(ret)
   }
 }
 

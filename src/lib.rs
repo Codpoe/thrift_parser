@@ -1,3 +1,4 @@
+pub mod compile;
 pub mod generate;
 pub mod parse;
 pub mod visit;
@@ -5,6 +6,7 @@ pub mod visit;
 #[cfg(test)]
 mod tests {
   use crate::{
+    compile::Compiler,
     generate::{GenerateOptions, Generator},
     parse::Parser,
   };
@@ -48,12 +50,24 @@ service ThriftService {
     GetDataRes GetData(1: GetDataReq req) (api.get = "/api/get-data", other = "something")
 }
 "#;
-    let mut thrift_document = Parser::new(idl).parse();
+    let mut thrift_document = Parser::new(idl).parse().unwrap();
 
     std::fs::write("./tests/fixtures/ast", format!("{:#?}", thrift_document)).unwrap();
 
     let ts_code = Generator::new(&mut thrift_document).build(GenerateOptions::default());
 
     std::fs::write("./tests/fixtures/gen.ts", ts_code).unwrap();
+  }
+
+  #[test]
+  fn test_compiler() {
+    Compiler::new(
+      vec!["service.thrift".to_string()],
+      "./tests/fixtures/compiler".to_string(),
+      "./tests/fixtures/compiler/out".to_string(),
+      GenerateOptions::default(),
+    )
+    .compile()
+    .unwrap();
   }
 }

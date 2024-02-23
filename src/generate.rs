@@ -10,6 +10,7 @@ use crate::{
 
 const INDENT: &'static str = "  ";
 
+#[derive(Debug, Clone)]
 pub struct GenerateOptions {
   i64_as_string: bool,
   options_type_code: Option<String>,
